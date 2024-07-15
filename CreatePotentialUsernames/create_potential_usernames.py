@@ -93,6 +93,8 @@ def create_combination(person: Person, add_number: bool):
     list_combinations.append(f"{person.first_name[:2].lower()}.{person.last_name.lower()}")
     list_combinations.append(f"{person.first_name.lower()}{person.last_name.lower()}")
     list_combinations.append(f"{person.first_name.lower()}.{person.last_name.lower()}")
+    list_combinations.append(f"{person.first_name.lower()}")
+    list_combinations.append(f"{person.last_name.lower()}")
     if add_number:
         for number in numbers:
             list_combinations.append(f"{person.first_name[0].lower()}.{person.last_name.lower()}{number}")
