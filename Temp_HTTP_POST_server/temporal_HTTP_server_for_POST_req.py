@@ -20,7 +20,7 @@ signal.signal(signal.SIGINT, sigint_handler)
 
 
 parser = argparse.ArgumentParser(description=f'Simple HTTP server that accepts POST requests')
-parser.add_argument('-p', '--port', type=int, default=8080, help=f'Listening port (default: 8080)')
+parser.add_argument('port', type=int, default=8080, help=f'Listening port (default: 8080)')
 parser.add_argument('--url-decode-output', action='store_true', help=f'URL decode the output.')
 args = parser.parse_args()
 
