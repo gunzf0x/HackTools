@@ -6,7 +6,7 @@ Scripts for [HTB Search](https://www.hackthebox.com/machines/search) machine.
 
 ## Usage
 
-### show_all_comuns.py
+### show_all_columns.py
 Script to read `.xlsx` files with hidden columns (_which is not the same as encrypted_) in Python. First, create a virtual environment and install `openpyxl` library there:
 ```shell-session
 ❯ python3 -m venv .venv_openpyxl
