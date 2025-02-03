@@ -22,7 +22,6 @@ Once the environment is activated, run the script:
 ```
 You might need to change the path where `.xlsx` is located in the script.
 
----
 
 ### print_username_password.py
 Saves users and hidden passwords from `.xlsx` file.
