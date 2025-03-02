@@ -1,7 +1,5 @@
 # HTB Yummy
 
----
-
 WriteUp: [https://gunzf0x.github.io/pentesting/posts/yummy/](https://gunzf0x.github.io/pentesting/posts/yummy/)
 
 `Python` scripts to abuse `Local File Inclusion` (`LFI`) at [HTB Yummy](https://www.hackthebox.com/machines/yummy) to read system files.
@@ -23,7 +21,7 @@ If we, additionally, want to also _create_ the user account at `yummy.htb` site,
 
 ---
 
-## Modify JWT using RSA256
+## Modify JWT using RSA256 algorithm
 To modify the `Jason Web Token` obtained from a user using `RSA256` algorithm we can run, for example:
 ### Usage
 ```shell-session
