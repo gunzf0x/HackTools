@@ -1,6 +1,6 @@
 # HacktheBox Avatar Machine Extractor
 
-A tool to extract machine avatars from HackTheBox oficial page. This tool automatically extract avatars from [HackTheBox official machines page](https://www.hackthebox.com/machines/).
+A tool to extract machine avatars from HackTheBox official page. This tool automatically extract avatars from [HackTheBox official machines page](https://www.hackthebox.com/machines/).
 
 ## Usage
 To extract avatar from with name `<machine-name>`, pass it to `-n`/`--name` flag and execute:
