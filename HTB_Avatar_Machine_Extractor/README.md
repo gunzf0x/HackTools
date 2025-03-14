@@ -1,16 +1,16 @@
-# HacktheBox Avatar Extractor
+# HacktheBox Avatar Machine Extractor
 
-A tool to extract avatars from HackTheBox oficial page. This tool automatically extract avatars from [HackTheBox official machines page](https://www.hackthebox.com/machines/).
+A tool to extract machine avatars from HackTheBox oficial page. This tool automatically extract avatars from [HackTheBox official machines page](https://www.hackthebox.com/machines/).
 
 ## Usage
 To extract avatar from with name `<machine-name>`, pass it to `-n`/`--name` flag and execute:
 ```shell-session
-python3 HTB_Avatar_Extractor.py -n <machine-name>
+python3 HTB_Avatar_Machine_Extractor.py -n <machine-name>
 ```
 
 For example, to extract content for [Mist](https://www.hackthebox.com/machines/mist) machine, execute:
 ```shell-session
-python3 HTB_Avatar_Extractor.py -n mist
+python3 HTB_Avatar_Machine_Extractor.py -n mist
 ```
 
 It will copy the avatar url link to clipboard.
@@ -20,10 +20,12 @@ Since I have designed this tool to use it for my [Obsidian](https://obsidian.md/
 
 For example, running:
 ```shell-session
-python3 HTB_Avatar_Extractor.py -n mist -o
+python3 HTB_Avatar_Machine_Extractor.py -n mist -o
 ```
 Will copy to our clipboard:
 ```
 ![Avatar mist](https://labs.hackthebox.com/storage/avatars/84669b838a8633d26f4a2d90a6069f7e.png)
 ```
-Pasting this content into `Obsidian` will automatically display the image.
+Pasting this content into `Obsidian` will automatically display the image, which should look like:
+
+![Avatar mist](https://labs.hackthebox.com/storage/avatars/84669b838a8633d26f4a2d90a6069f7e.png)
