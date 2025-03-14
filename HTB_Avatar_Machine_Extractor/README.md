@@ -3,7 +3,7 @@
 A tool to extract machine avatars from HackTheBox official page. This tool automatically extract avatars from [HackTheBox official machines page](https://www.hackthebox.com/machines/).
 
 ## Usage
-To extract avatar from with name `<machine-name>`, pass it to `-n`/`--name` flag and execute:
+To extract avatar from a machine with name `<machine-name>`, pass it to `-n`/`--name` flag and execute:
 ```shell-session
 python3 HTB_Avatar_Machine_Extractor.py -n <machine-name>
 ```
