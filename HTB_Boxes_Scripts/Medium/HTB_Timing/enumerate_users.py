@@ -11,7 +11,7 @@ def enumerate_users()->None:
     users_found = []
     p2 = log.progress("Users found")
     # Get number of lines of the file containing potential users
-    filename: str = "./xato-net-10-million-usernames.txt"
+    filename: str = "/usr/share/seclists/Usernames/xato-net-10-million-usernames.txt"
     with open(filename, "r") as f:
         total_lines = sum(1 for _ in f)
     # Start enumerating users
