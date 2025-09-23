@@ -1,4 +1,7 @@
 .php
+.pHP
+.PhP
+.pHp
 .php3
 .php4
 .php5
