@@ -1,0 +1,13 @@
+.py
+.pY
+.Py
+.pyc
+.pyo
+.pyd
+.pyw
+.ipynb
+.pyi
+.pxd
+.pxi
+.so
+.pyz

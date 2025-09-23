@@ -1,10 +1,12 @@
 .jpg
+.jPG
 .jpeg
 .jpe
 .jif
 .jfif
 .jfi
 .png
+.PnG
 .gif
 .bmp
 .dib

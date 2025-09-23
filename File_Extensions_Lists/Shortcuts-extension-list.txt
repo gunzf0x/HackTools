@@ -1,0 +1,11 @@
+.url
+.UrL
+.lnk
+.LnK
+.webloc
+.desktop
+.scf
+.website
+.hta
+.html
+.htm

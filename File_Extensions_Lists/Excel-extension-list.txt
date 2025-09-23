@@ -1,0 +1,15 @@
+.xlsx
+.xLSx
+.XlsX
+.xls
+.xlsm
+.xltx
+.xltm
+.xlam
+.xlb
+.xlt
+.xlsb
+.ods
+.ots
+.fods
+.csv

@@ -1,0 +1,14 @@
+.doc
+.docx
+.dOCx
+.dot
+.dotx
+.docm
+.dotm
+.wps
+.wri
+.rtf
+.odt
+.ott
+.xml
+.fodt
