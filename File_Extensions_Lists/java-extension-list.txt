@@ -1,0 +1,6 @@
+.jsp
+.jspx
+.jSP
+.jSp
+.jsf
+.xhtml

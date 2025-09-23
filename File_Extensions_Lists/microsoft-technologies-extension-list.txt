@@ -1,0 +1,10 @@
+.asp
+.aspx
+.aSPx
+.ASpx
+.aSp
+.ascx
+.asmx
+.ashx
+.cshtml
+.vbhtml
