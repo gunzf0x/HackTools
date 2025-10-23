@@ -85,12 +85,13 @@ def create_combination(person: Person, add_number: bool):
     """
     Create different combinations for potential users and save them into a list
     """
-    list_combinations: list[ str] = []
+    list_combinations: list[str] = []
     numbers = list(string.digits)
     list_combinations.append(f"{person.first_name[0].lower()}{person.last_name.lower()}")
     list_combinations.append(f"{person.first_name[:2].lower()}{person.last_name.lower()}")
     list_combinations.append(f"{person.first_name[0].lower()}.{person.last_name.lower()}")
     list_combinations.append(f"{person.first_name[:2].lower()}.{person.last_name.lower()}")
+    list_combinations.append(f"{person.first_name.lower()}.{person.last_name[0].lower()}")
     list_combinations.append(f"{person.first_name.lower()}{person.last_name.lower()}")
     list_combinations.append(f"{person.first_name.lower()}.{person.last_name.lower()}")
     list_combinations.append(f"{person.first_name.lower()}")
@@ -110,6 +111,7 @@ def create_variations_and_save(potential_users: list[Person], args: argparse.Nam
     """
     path_to_save: str = get_output_file_path(args.outfile)
     with open(path_to_save, 'w') as f:
+        f.write("Administrator\nAdmin\n") # Add Administrador and Admin users
         counter: int = 0
         for person in potential_users:
             possible_combinations = create_combination(person, args.add_numbers)
