@@ -104,7 +104,7 @@ def parse_byte_string(byte_string: str) -> bytes:
     return bytes(values)
 
 
-def bytes_to_0x_csv_and_len(b: bytes) -> str:
+def bytes_to_0x_csv(b: bytes) -> str:
     """
     Convert b'\x0a\x0b' -> ('0x0a, 0x0b', 2)
     """
@@ -142,11 +142,11 @@ def main()->None:
     print(f"\n{STAR} {color['GREEN']}Parsed bytes (hex) {color['NC']}:{color['RED']}", plaintext.hex(), color['NC'])
 
     print(f"\n{STAR} {color['GREEN']}Key (hex)          {color['NC']}:{color['YELLOW']}", key.hex(), color['NC'])
-    print(f"{STAR} {color['GREEN']}Key (0x csv)       {color['NC']}:{color['YELLOW']}", bytes_to_0x_csv_and_len(key), color['NC'])
+    print(f"{STAR} {color['GREEN']}Key (0x csv)       {color['NC']}:{color['YELLOW']}", bytes_to_0x_csv(key), color['NC'])
     print(f"{STAR} {color['GREEN']}Key length         {color['NC']}:{color['MAGENTA']} {len(key)} bytes{color['NC']}")
 
     print(f"\n{STAR} {color['GREEN']}IV  (hex)          {color['NC']}:{color['YELLOW']}", iv.hex(), color['NC'])
-    print(f"{STAR} {color['GREEN']}IV  (0x csv)       {color['NC']}:{color['YELLOW']}", bytes_to_0x_csv_and_len(iv), color['NC'])
+    print(f"{STAR} {color['GREEN']}IV  (0x csv)       {color['NC']}:{color['YELLOW']}", bytes_to_0x_csv(iv), color['NC'])
     print(f"{STAR} {color['GREEN']}IV length          {color['NC']}:{color['MAGENTA']} {len(iv)} bytes{color['NC']}")
 
     print(f"\n{STAR} {color['GREEN']}Ciphertext (hex)   {color['NC']}:{color['CYAN']}", ciphertext.hex(), color['NC'])
