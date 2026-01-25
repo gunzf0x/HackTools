@@ -3,6 +3,7 @@ import argparse
 import sys
 import signal
 import struct
+import base64
 
 
 # Define color dictionary
@@ -63,6 +64,28 @@ def get_arguments_from_user()->argparse.Namespace:
 {color['GREEN']}python3 {sys.argv[0]} {hex2str} 0x0105000000000005150000005B7BB0F398AA2245AD4A1CA4{color['NC']}""",
                                      formatter_class=argparse.RawTextHelpFormatter)
     hex2str_command.add_argument('sid', type=str, help="Security Identifier (SID) in hexadecimal to convert to readable string.")
+
+    ## Define 'str2-base64'
+    str2_b64: str = 'str2-b64'
+    str2_b64_command = commands.add_parser(str2_b64, help=f"{color['YELLOW']}Convert Security Identifier (SID) to base64 (as shown in LDAP){color['NC']}", 
+                    description=f"{color['YELLOW']}Convert Security Identifier (SID) to base64 (as shown in LDAP){color['NC']}", 
+                                         epilog=f"""
+{color['YELLOW']}Example usage:{color['NC']}
+{color['GREEN']}python3 {sys.argv[0]} {str2_b64} S-1-5-21-2570265163-3918697770-3667495639-1235{color['NC']}""",
+                                     formatter_class=argparse.RawTextHelpFormatter)
+    str2_b64_command.add_argument('sid', type=str, help="Security Identifier (SID) to convert in base64.")
+
+    ## Define 'b64-2str'
+    b64_2str: str = 'b64-2str'
+    b64_2str_command = commands.add_parser(b64_2str, help=f"{color['GREEN']}Convert Security Identifier (SID) in base64 from LDAP to readable format/string{color['NC']}", 
+                    description=f"{color['GREEN']}Convert Security Identifier (SID) in base64 from LDAP to readable format/string{color['NC']}", 
+                                         epilog=f"""
+{color['YELLOW']}Example usage:{color['NC']}
+{color['GREEN']}python3 {sys.argv[0]} {b64_2str} AQUAAAAAAAUVAAAASyIzmSqVkunXipna0wQAAA=={color['NC']}""",
+                                     formatter_class=argparse.RawTextHelpFormatter)
+    b64_2str_command.add_argument('sid', type=str, help="Security Identifier (SID) in base64 to convert to readable string.")
+
+    
     
     return parser.parse_args()
 
@@ -135,6 +158,48 @@ def hex_to_sid(hexstr: str, strict: bool = False) -> str:
     return sid_text
 
 
+def b64_to_str(sid_b64: str):
+    """
+    Convert SID in base64 to readable format/string
+    """
+    data = base64.b64decode(sid_b64)
+
+    revision = data[0]
+    subauth_count = data[1]
+    authority = int.from_bytes(data[2:8], "big")
+
+    subs = []
+    offset = 8
+    for _ in range(subauth_count):
+        subs.append(struct.unpack("<I", data[offset:offset+4])[0])
+        offset += 4
+
+    sid = f"S-{revision}-{authority}-" + "-".join(map(str, subs))
+    return sid
+
+
+def str_to_b64(sid_str: str):
+    """
+    Convert SID to base64 (as shown in LDAP protocol)
+    """
+    parts = sid_str.split("-")
+    revision = int(parts[1])
+    authority = int(parts[2])
+    subauths = list(map(int, parts[3:]))
+
+    sid_bin = bytearray()
+    sid_bin.append(revision)
+    sid_bin.append(len(subauths))
+    sid_bin += authority.to_bytes(6, byteorder="big")
+
+    for sa in subauths:
+        sid_bin += struct.pack("<I", sa)
+
+    b64 = base64.b64encode(sid_bin).decode()
+    return b64
+
+
+
 def main()->None:
     # Get arguments from user
     args = get_arguments_from_user()
@@ -154,6 +219,24 @@ def main()->None:
             sid_text = hex_to_sid(args.sid, strict=False)
             print(f"{STAR} {color['CYAN']}Hex SID: {color['GREEN']}{args.sid}{color['NC']}")
             print(f"{STAR} {color['MAGENTA']}New SID: {color['GREEN']}{sid_text}{color['NC']}")
+        except ValueError as e:
+            print(f"Error: {e}")
+            sys.exit(1)
+    # Execute 'b64-2str'
+    if args.command == 'b64-2str':
+        try:
+            sid_text = b64_to_str(args.sid)
+            print(f"{STAR} {color['CYAN']}b64 SID: {color['GREEN']}{args.sid}{color['NC']}")
+            print(f"{STAR} {color['MAGENTA']}New SID: {color['GREEN']}{sid_text}{color['NC']}")
+        except ValueError as e:
+            print(f"Error: {e}")
+            sys.exit(1)
+    # Execute 'str2-b64'
+    if args.command == 'str2-b64':
+        try:
+            sid_b64 = str_to_b64(args.sid)
+            print(f"{STAR}  {color['CYAN']}Given SID: {color['GREEN']}{args.sid}{color['NC']}")
+            print(f"{STAR} {color['MAGENTA']}Base64 SID: {color['GREEN']}{sid_b64}{color['NC']}")
         except ValueError as e:
             print(f"Error: {e}")
             sys.exit(1)
