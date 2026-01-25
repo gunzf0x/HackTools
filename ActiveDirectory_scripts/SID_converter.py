@@ -226,6 +226,7 @@ def main()->None:
     if args.command == 'b64-2str':
         try:
             sid_text = b64_to_str(args.sid)
+            print()
             print(f"{STAR} {color['CYAN']}b64 SID: {color['GREEN']}{args.sid}{color['NC']}")
             print(f"{STAR} {color['MAGENTA']}New SID: {color['GREEN']}{sid_text}{color['NC']}")
         except ValueError as e:
@@ -235,6 +236,7 @@ def main()->None:
     if args.command == 'str2-b64':
         try:
             sid_b64 = str_to_b64(args.sid)
+            print()
             print(f"{STAR}  {color['CYAN']}Given SID: {color['GREEN']}{args.sid}{color['NC']}")
             print(f"{STAR} {color['MAGENTA']}Base64 SID: {color['GREEN']}{sid_b64}{color['NC']}")
         except ValueError as e:
